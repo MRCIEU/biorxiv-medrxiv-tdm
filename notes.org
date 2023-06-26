@@ -1,5 +1,13 @@
 * notes
 
+** tldr steps
+
+- root user
+- iam user
+- conda: awscli, s3cmd
+- aws configure
+- s3cmd configure
+
 ** s3cmd
 
 #+begin_src

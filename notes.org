@@ -8,7 +8,7 @@
 - aws configure
 - s3cmd configure
 
-** s3cmd
+* s3cmd
 
 #+begin_src
 Usage: s3cmd [options] COMMAND [parameters]
@@ -372,7 +372,7 @@ http://s3tools.org
 
 #+end_src
 
-** biorxiv
+* biorxiv
 
 #+begin_src
 s3cmd ls s3://biorxiv-src-monthly --requester-pays
@@ -476,3 +476,86 @@ s3cmd ls s3://biorxiv-src-monthly/Current_Content/ --requester-pays
 #                            DIR  s3://biorxiv-src-monthly/Current_Content/September_2022/
 #  2019-11-12 10:57            0  s3://biorxiv-src-monthly/Current_Content/
 #+end_src
+
+#+begin_src
+s3cmd du s3://biorxiv-src-monthly/Current_Content/ --human-readable --requester-pays
+
+# 3T  216176 objects s3://biorxiv-src-monthly/Current_Content/
+#+end_src
+
+#+begin_src
+s3cmd du s3://biorxiv-src-monthly/Back_Content/ --human-readable --requester-pays
+
+# 529G   52528 objects s3://biorxiv-src-monthly/Back_Content/
+#+end_src
+
+* medrxiv
+
+#+begin_src
+s3cmd ls s3://medrxiv-src-monthly/ --requester-pays
+
+
+#                         DIR  s3://medrxiv-src-monthly/Back_Content/
+#                         DIR  s3://medrxiv-src-monthly/Current_Content/
+#+end_src
+
+#+begin_src
+s3cmd ls s3://medrxiv-src-monthly/Back_Content/ --requester-pays
+
+#                           DIR  s3://medrxiv-src-monthly/Back_Content/medRxiv_Batch_01/
+#                           DIR  s3://medrxiv-src-monthly/Back_Content/medRxiv_Batch_02/
+#                           DIR  s3://medrxiv-src-monthly/Back_Content/medRxiv_Batch_03/
+#                           DIR  s3://medrxiv-src-monthly/Back_Content/medRxiv_Batch_04/
+#                           DIR  s3://medrxiv-src-monthly/Back_Content/medRxiv_Batch_05/
+#                           DIR  s3://medrxiv-src-monthly/Back_Content/medRxiv_Batch_06/
+#                           DIR  s3://medrxiv-src-monthly/Back_Content/medRxiv_Batch_07/
+#                           DIR  s3://medrxiv-src-monthly/Back_Content/medRxiv_Batch_08/
+#                           DIR  s3://medrxiv-src-monthly/Back_Content/medRxiv_Batch_09/
+#                           DIR  s3://medrxiv-src-monthly/Back_Content/medRxiv_Batch_10/
+#                           DIR  s3://medrxiv-src-monthly/Back_Content/medRxiv_Batch_11/
+#                           DIR  s3://medrxiv-src-monthly/Back_Content/medRxiv_Batch_12/
+#                           DIR  s3://medrxiv-src-monthly/Back_Content/medRxiv_Batch_13/
+#                           DIR  s3://medrxiv-src-monthly/Back_Content/medRxiv_Batch_14/
+#                           DIR  s3://medrxiv-src-monthly/Back_Content/medRxiv_Batch_15/
+#                           DIR  s3://medrxiv-src-monthly/Back_Content/medRxiv_Batch_16/
+# 2021-03-11 07:05            0  s3://medrxiv-src-monthly/Back_Content/
+#+end_src
+
+#+begin_src
+s3cmd ls s3://medrxiv-src-monthly/Current_Content/ --requester-pays
+
+#                           DIR  s3://medrxiv-src-monthly/Current_Content/April_2021/
+#                           DIR  s3://medrxiv-src-monthly/Current_Content/April_2022/
+#                           DIR  s3://medrxiv-src-monthly/Current_Content/April_2023/
+#                           DIR  s3://medrxiv-src-monthly/Current_Content/August_2021/
+#                           DIR  s3://medrxiv-src-monthly/Current_Content/August_2022/
+#                           DIR  s3://medrxiv-src-monthly/Current_Content/December_2020/
+#                           DIR  s3://medrxiv-src-monthly/Current_Content/December_2021/
+#                           DIR  s3://medrxiv-src-monthly/Current_Content/December_2022/
+#                           DIR  s3://medrxiv-src-monthly/Current_Content/February_2021/
+#                           DIR  s3://medrxiv-src-monthly/Current_Content/February_2022/
+#                           DIR  s3://medrxiv-src-monthly/Current_Content/February_2023/
+#                           DIR  s3://medrxiv-src-monthly/Current_Content/January_2021/
+#                           DIR  s3://medrxiv-src-monthly/Current_Content/January_2022/
+#                           DIR  s3://medrxiv-src-monthly/Current_Content/January_2023/
+#                           DIR  s3://medrxiv-src-monthly/Current_Content/July_2021/
+#                           DIR  s3://medrxiv-src-monthly/Current_Content/July_2022/
+#                           DIR  s3://medrxiv-src-monthly/Current_Content/June_2021/
+#                           DIR  s3://medrxiv-src-monthly/Current_Content/June_2022/
+#                           DIR  s3://medrxiv-src-monthly/Current_Content/March_2021/
+#                           DIR  s3://medrxiv-src-monthly/Current_Content/March_2022/
+#                           DIR  s3://medrxiv-src-monthly/Current_Content/March_2023/
+#                           DIR  s3://medrxiv-src-monthly/Current_Content/May_2021/
+#                           DIR  s3://medrxiv-src-monthly/Current_Content/May_2022/
+#                           DIR  s3://medrxiv-src-monthly/Current_Content/May_2023/
+#                           DIR  s3://medrxiv-src-monthly/Current_Content/November_2020/
+#                           DIR  s3://medrxiv-src-monthly/Current_Content/November_2021/
+#                           DIR  s3://medrxiv-src-monthly/Current_Content/November_2022/
+#                           DIR  s3://medrxiv-src-monthly/Current_Content/October_2020/
+#                           DIR  s3://medrxiv-src-monthly/Current_Content/October_2021/
+#                           DIR  s3://medrxiv-src-monthly/Current_Content/October_2022/
+#                           DIR  s3://medrxiv-src-monthly/Current_Content/September_2021/
+#                           DIR  s3://medrxiv-src-monthly/Current_Content/September_2022/
+# 2021-03-11 07:05            0  s3://medrxiv-src-monthly/Current_Content/
+#+end_src
+TODO: medrxiv struct, du back_content, current_content

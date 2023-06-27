@@ -384,37 +384,60 @@ s3cmd ls s3://biorxiv-src-monthly --requester-pays
 #+begin_src
 s3cmd ls s3://biorxiv-src-monthly/Back_Content/ --requester-pays
 
-#                          DIR  s3://biorxiv-src-monthly/Back_Content/Batch_01/
-#                          DIR  s3://biorxiv-src-monthly/Back_Content/Batch_02/
-#                          DIR  s3://biorxiv-src-monthly/Back_Content/Batch_03/
-#                          DIR  s3://biorxiv-src-monthly/Back_Content/Batch_04/
-#                          DIR  s3://biorxiv-src-monthly/Back_Content/Batch_05/
-#                          DIR  s3://biorxiv-src-monthly/Back_Content/Batch_06/
-#                          DIR  s3://biorxiv-src-monthly/Back_Content/Batch_07/
-#                          DIR  s3://biorxiv-src-monthly/Back_Content/Batch_08/
-#                          DIR  s3://biorxiv-src-monthly/Back_Content/Batch_09/
-#                          DIR  s3://biorxiv-src-monthly/Back_Content/Batch_10/
-#                          DIR  s3://biorxiv-src-monthly/Back_Content/Batch_11/
-#                          DIR  s3://biorxiv-src-monthly/Back_Content/Batch_12/
-#                          DIR  s3://biorxiv-src-monthly/Back_Content/Batch_13/
-#                          DIR  s3://biorxiv-src-monthly/Back_Content/Batch_14/
-#                          DIR  s3://biorxiv-src-monthly/Back_Content/Batch_15/
-#                          DIR  s3://biorxiv-src-monthly/Back_Content/Batch_16/
-#                          DIR  s3://biorxiv-src-monthly/Back_Content/Batch_17/
-#                          DIR  s3://biorxiv-src-monthly/Back_Content/Batch_18/
-#                          DIR  s3://biorxiv-src-monthly/Back_Content/Batch_19/
-#                          DIR  s3://biorxiv-src-monthly/Back_Content/Batch_20/
-#                          DIR  s3://biorxiv-src-monthly/Back_Content/Batch_21/
-#                          DIR  s3://biorxiv-src-monthly/Back_Content/Batch_22/
-#                          DIR  s3://biorxiv-src-monthly/Back_Content/Batch_23/
-#                          DIR  s3://biorxiv-src-monthly/Back_Content/Batch_24/
-#                          DIR  s3://biorxiv-src-monthly/Back_Content/Batch_25/
-#                          DIR  s3://biorxiv-src-monthly/Back_Content/Batch_26/
-#                          DIR  s3://biorxiv-src-monthly/Back_Content/Batch_27/
-#                          DIR  s3://biorxiv-src-monthly/Back_Content/Batch_28/
-#                          DIR  s3://biorxiv-src-monthly/Back_Content/Batch_29/
-#                          DIR  s3://biorxiv-src-monthly/Back_Content/Batch_30/
-# (up till Batch_53)
+#                           DIR  s3://biorxiv-src-monthly/Back_Content/Batch_01/
+#                           DIR  s3://biorxiv-src-monthly/Back_Content/Batch_02/
+#                           DIR  s3://biorxiv-src-monthly/Back_Content/Batch_03/
+#                           DIR  s3://biorxiv-src-monthly/Back_Content/Batch_04/
+#                           DIR  s3://biorxiv-src-monthly/Back_Content/Batch_05/
+#                           DIR  s3://biorxiv-src-monthly/Back_Content/Batch_06/
+#                           DIR  s3://biorxiv-src-monthly/Back_Content/Batch_07/
+#                           DIR  s3://biorxiv-src-monthly/Back_Content/Batch_08/
+#                           DIR  s3://biorxiv-src-monthly/Back_Content/Batch_09/
+#                           DIR  s3://biorxiv-src-monthly/Back_Content/Batch_10/
+#                           DIR  s3://biorxiv-src-monthly/Back_Content/Batch_11/
+#                           DIR  s3://biorxiv-src-monthly/Back_Content/Batch_12/
+#                           DIR  s3://biorxiv-src-monthly/Back_Content/Batch_13/
+#                           DIR  s3://biorxiv-src-monthly/Back_Content/Batch_14/
+#                           DIR  s3://biorxiv-src-monthly/Back_Content/Batch_15/
+#                           DIR  s3://biorxiv-src-monthly/Back_Content/Batch_16/
+#                           DIR  s3://biorxiv-src-monthly/Back_Content/Batch_17/
+#                           DIR  s3://biorxiv-src-monthly/Back_Content/Batch_18/
+#                           DIR  s3://biorxiv-src-monthly/Back_Content/Batch_19/
+#                           DIR  s3://biorxiv-src-monthly/Back_Content/Batch_20/
+#                           DIR  s3://biorxiv-src-monthly/Back_Content/Batch_21/
+#                           DIR  s3://biorxiv-src-monthly/Back_Content/Batch_22/
+#                           DIR  s3://biorxiv-src-monthly/Back_Content/Batch_23/
+#                           DIR  s3://biorxiv-src-monthly/Back_Content/Batch_24/
+#                           DIR  s3://biorxiv-src-monthly/Back_Content/Batch_25/
+#                           DIR  s3://biorxiv-src-monthly/Back_Content/Batch_26/
+#                           DIR  s3://biorxiv-src-monthly/Back_Content/Batch_27/
+#                           DIR  s3://biorxiv-src-monthly/Back_Content/Batch_28/
+#                           DIR  s3://biorxiv-src-monthly/Back_Content/Batch_29/
+#                           DIR  s3://biorxiv-src-monthly/Back_Content/Batch_30/
+#                           DIR  s3://biorxiv-src-monthly/Back_Content/Batch_31/
+#                           DIR  s3://biorxiv-src-monthly/Back_Content/Batch_32/
+#                           DIR  s3://biorxiv-src-monthly/Back_Content/Batch_33/
+#                           DIR  s3://biorxiv-src-monthly/Back_Content/Batch_34/
+#                           DIR  s3://biorxiv-src-monthly/Back_Content/Batch_35/
+#                           DIR  s3://biorxiv-src-monthly/Back_Content/Batch_36/
+#                           DIR  s3://biorxiv-src-monthly/Back_Content/Batch_37/
+#                           DIR  s3://biorxiv-src-monthly/Back_Content/Batch_38/
+#                           DIR  s3://biorxiv-src-monthly/Back_Content/Batch_39/
+#                           DIR  s3://biorxiv-src-monthly/Back_Content/Batch_40/
+#                           DIR  s3://biorxiv-src-monthly/Back_Content/Batch_41/
+#                           DIR  s3://biorxiv-src-monthly/Back_Content/Batch_42/
+#                           DIR  s3://biorxiv-src-monthly/Back_Content/Batch_43/
+#                           DIR  s3://biorxiv-src-monthly/Back_Content/Batch_44/
+#                           DIR  s3://biorxiv-src-monthly/Back_Content/Batch_45/
+#                           DIR  s3://biorxiv-src-monthly/Back_Content/Batch_46/
+#                           DIR  s3://biorxiv-src-monthly/Back_Content/Batch_47/
+#                           DIR  s3://biorxiv-src-monthly/Back_Content/Batch_48/
+#                           DIR  s3://biorxiv-src-monthly/Back_Content/Batch_49/
+#                           DIR  s3://biorxiv-src-monthly/Back_Content/Batch_50/
+#                           DIR  s3://biorxiv-src-monthly/Back_Content/Batch_51/
+#                           DIR  s3://biorxiv-src-monthly/Back_Content/Batch_52/
+#                           DIR  s3://biorxiv-src-monthly/Back_Content/Batch_53/
+# 2019-11-02 06:32            0  s3://biorxiv-src-monthly/Back_Content/
 #+end_src
 
 #+begin_src
@@ -558,4 +581,33 @@ s3cmd ls s3://medrxiv-src-monthly/Current_Content/ --requester-pays
 #                           DIR  s3://medrxiv-src-monthly/Current_Content/September_2022/
 # 2021-03-11 07:05            0  s3://medrxiv-src-monthly/Current_Content/
 #+end_src
-TODO: medrxiv struct, du back_content, current_content
+
+#+begin_src
+s3cmd du s3://medrxiv-src-monthly/Back_Content/ --human-readable --requester-pays
+
+# 73G   15095 objects s3://medrxiv-src-monthly/Back_Content/
+#+end_src
+
+#+begin_src
+s3cmd du s3://medrxiv-src-monthly/Current_Content/ --human-readable --requester-pays
+
+# 230G   38922 objects s3://medrxiv-src-monthly/Current_Content/
+#+end_src
+
+#+begin_src
+s3cmd get s3://medrxiv-src-monthly/Current_Content/September_2022 --recursive --requester-pays
+
+# 20:57 -- 21:07
+#+end_src
+
+#+begin_src
+s3cmd get s3://medrxiv-src-monthly/Current_Content --recursive --requester-pays
+
+# roughly 21:15 -- 04:21
+#+end_src
+
+#+begin_src
+s3cmd get biorxiv back & medrxiv back
+
+10:55
+#+end_src

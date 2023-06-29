@@ -28,8 +28,8 @@
 - [X] January_2020
 - [X] January_2021
 - [X] January_2022
-- [ ] January_2023
-- [ ] July_2019
+- [X] January_2023
+- [-] July_2019
 - [ ] July_2020
 - [ ] July_2021
 - [ ] July_2022
@@ -44,21 +44,21 @@
 - [ ] March_2023
 - [ ] May_2019
 - [ ] May_2020
-- [ ] May_2021
-- [ ] May_2022
-- [ ] May_2023
-- [ ] November_2019
-- [ ] November_2020
-- [ ] November_2021
-- [ ] November_2022
-- [-] October_2019
-- [-] October_2020
-- [-] October_2021
-- [-] October_2022
-- [-] September_2019
-- [-] September_2020
-- [-] September_2021
-- [-] September_2022
+- [-] May_2021
+- [-] May_2022
+- [-] May_2023
+- [-] November_2019
+- [-] November_2020
+- [-] November_2021
+- [-] November_2022
+- [X] October_2019
+- [X] October_2020
+- [X] October_2021
+- [X] October_2022
+- [X] September_2019
+- [X] September_2020
+- [X] September_2021
+- [X] September_2022
 * post get tidy up
 ** TODO extract key info from meca files
 ** TODO move them to rdsf

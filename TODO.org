@@ -29,8 +29,8 @@
 - [X] January_2021
 - [X] January_2022
 - [X] January_2023
-- [-] July_2019
-- [ ] July_2020
+- [X] July_2019
+- [-] July_2020
 - [ ] July_2021
 - [ ] July_2022
 - [ ] June_2019
@@ -39,18 +39,18 @@
 - [ ] June_2022
 - [ ] March_2019
 - [ ] March_2020
-- [ ] March_2021
-- [ ] March_2022
-- [ ] March_2023
-- [ ] May_2019
-- [ ] May_2020
-- [-] May_2021
-- [-] May_2022
+- [-] March_2021
+- [-] March_2022
+- [-] March_2023
+- [-] May_2019
+- [-] May_2020
+- [X] May_2021
+- [X] May_2022
 - [-] May_2023
-- [-] November_2019
-- [-] November_2020
-- [-] November_2021
-- [-] November_2022
+- [X] November_2019
+- [X] November_2020
+- [X] November_2021
+- [X] November_2022
 - [X] October_2019
 - [X] October_2020
 - [X] October_2021

@@ -1,0 +1,66 @@
+#+startup: indent
+
+* WIP s3 get
+** DONE medrxiv back
+** DONE medrxiv current
+** DONE biorxiv back
+** WIP biorxiv current
+- [X] April_2019
+- [X] April_2020
+- [X] April_2021
+- [X] April_2022
+- [X] April_2023
+- [X] August_2019
+- [X] August_2020
+- [X] August_2021
+- [X] August_2022
+- [X] December_2018
+- [X] December_2019
+- [X] December_2020
+- [X] December_2021
+- [X] December_2022
+- [X] February_2019
+- [X] February_2020
+- [X] February_2021
+- [X] February_2022
+- [X] February_2023
+- [X] January_2019
+- [X] January_2020
+- [X] January_2021
+- [X] January_2022
+- [ ] January_2023
+- [ ] July_2019
+- [ ] July_2020
+- [ ] July_2021
+- [ ] July_2022
+- [ ] June_2019
+- [ ] June_2020
+- [ ] June_2021
+- [ ] June_2022
+- [ ] March_2019
+- [ ] March_2020
+- [ ] March_2021
+- [ ] March_2022
+- [ ] March_2023
+- [ ] May_2019
+- [ ] May_2020
+- [ ] May_2021
+- [ ] May_2022
+- [ ] May_2023
+- [ ] November_2019
+- [ ] November_2020
+- [ ] November_2021
+- [ ] November_2022
+- [-] October_2019
+- [-] October_2020
+- [-] October_2021
+- [-] October_2022
+- [-] September_2019
+- [-] September_2020
+- [-] September_2021
+- [-] September_2022
+* post get tidy up
+** TODO extract key info from meca files
+** TODO move them to rdsf
+* some simple EDAs
+** TODO timeseries distro of articles by categories

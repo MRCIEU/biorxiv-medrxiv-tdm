@@ -4,7 +4,7 @@
 ** DONE medrxiv back
 ** DONE medrxiv current
 ** DONE biorxiv back
-** WIP biorxiv current
+** DONE biorxiv current
 - [X] April_2019
 - [X] April_2020
 - [X] April_2021
@@ -30,23 +30,23 @@
 - [X] January_2022
 - [X] January_2023
 - [X] July_2019
-- [-] July_2020
-- [ ] July_2021
-- [ ] July_2022
-- [ ] June_2019
-- [ ] June_2020
-- [ ] June_2021
-- [ ] June_2022
-- [ ] March_2019
-- [ ] March_2020
-- [-] March_2021
-- [-] March_2022
-- [-] March_2023
-- [-] May_2019
-- [-] May_2020
+- [X] July_2020
+- [X] July_2021
+- [X] July_2022
+- [X] June_2019
+- [X] June_2020
+- [X] June_2021
+- [X] June_2022
+- [X] March_2019
+- [X] March_2020
+- [X] March_2021
+- [X] March_2022
+- [X] March_2023
+- [X] May_2019
+- [X] May_2020
 - [X] May_2021
 - [X] May_2022
-- [-] May_2023
+- [X] May_2023
 - [X] November_2019
 - [X] November_2020
 - [X] November_2021
@@ -61,6 +61,6 @@
 - [X] September_2022
 * post get tidy up
 ** TODO extract key info from meca files
-** TODO move them to rdsf
+** HOLD move them to rdsf
 * some simple EDAs
 ** TODO timeseries distro of articles by categories

@@ -1,0 +1,21 @@
+name: biorxiv-medrxiv-tdm
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.9
+  - pip
+  - black
+  - flake8
+  - jedi
+  - jupyterlab
+  - matplotlib
+  - nodejs
+  - numpy
+  - pandas
+  - seaborn
+  - scikit-learn
+  - spacy
+  - pip:
+    - awscli==1.27.160
+    - s3cmd==2.3.0

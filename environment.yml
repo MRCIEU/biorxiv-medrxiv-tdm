@@ -18,6 +18,9 @@ dependencies:
   - spacy
   - bs4
   - lxml
+  - simple-parsing
+  - loguru
+  - icecream
   - pip:
     - awscli==1.27.160
     - s3cmd==2.3.0

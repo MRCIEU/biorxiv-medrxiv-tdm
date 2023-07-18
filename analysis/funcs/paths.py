@@ -1,17 +1,17 @@
 import warnings
 from pathlib import Path
 
-def _find_proj_root() -> Path:
-    root = Path(".") / ".."
-    anchor = root / "README.md"
-    if not anchor.exists():
-        warnings.warn("{anchor} not found".format(anchor=anchor.resolve()))
-    return root
+from yiutils.project_utils import find_project_root
 
-_root = _find_proj_root()
+_root = find_project_root()
+
 paths = {
     "root": _root,
+    # input
     "data_root": _root / "data",
     "raw_data_dir": _root / "data" / "local-source-data",
     "examples_data_dir": _root / "data" / "local-source-data" / "examples",
+    # output
+    "output": _root / "output",
+    "tmp_output": _root / "output" / "tmp",
 }

@@ -21,6 +21,8 @@ dependencies:
   - simple-parsing
   - loguru
   - icecream
+  - pydash
   - pip:
     - awscli==1.27.160
     - s3cmd==2.3.0
+    - ray

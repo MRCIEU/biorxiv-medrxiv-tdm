@@ -1,2 +1,3 @@
-def hello_world() -> str:
+def hello_world() -> None:
     print("hello world")
+    return None

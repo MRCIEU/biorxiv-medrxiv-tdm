@@ -1,6 +1,3 @@
-import warnings
-from pathlib import Path
-
 from yiutils.project_utils import find_project_root
 
 _root = find_project_root()

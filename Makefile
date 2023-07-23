@@ -36,10 +36,6 @@ lint:
 	python -m mypy \
 		$(python_files)
 
-## Build the whl
-build:
-	poetry build
-
 ## ==== scripts ====
 
 #################################################################################

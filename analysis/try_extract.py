@@ -11,8 +11,11 @@ from zipfile import ZipFile
 
 import pandas as pd
 import xmltodict
+
+# import html2text
 from bs4 import BeautifulSoup as bs
 from loguru import logger
+from lxml import etree
 from pydash import py_
 
 from yiutils.failsafe import failsafe  # isort:skip
@@ -28,13 +31,17 @@ OUTPUT_DIR = paths["tmp_output"]
 OUTPUT_FILE = OUTPUT_DIR / "tmp_results.json"
 OUTPUT_ERROR_FILE = OUTPUT_DIR / "tmp_error.csv"
 
-NUM_SAMPLE = 30
+NUM_SAMPLE = 800
 
 
-def parse_full_text(full_text: Dict[str, Any]) -> Dict[str, Any]:
+def parse_full_text(
+    full_text_dict: Dict[str, Any], full_text_bs: bs, verbose: bool = False
+) -> Dict[str, Any]:
+    # h = html2text.HTML2Text(bodywidth=0)
+
     # title
-    title = (
-        py_.chain(full_text)
+    title_find = (
+        py_.chain(full_text_dict)
         .at(
             [
                 "article",
@@ -44,21 +51,29 @@ def parse_full_text(full_text: Dict[str, Any]) -> Dict[str, Any]:
                 "article-title",
             ]
         )
-        .value()[0]
+        .value()
     )
-    assert isinstance(title, str)
+    assert len(title_find) > 0
+    title = title_find[0]
+    if not isinstance(title, str):
+        title_raw = full_text_bs.find_all("article-title")[0]
+        tree = etree.fromstring(str(title_raw))
+        title = str(etree.tostring(tree, method="text", encoding="utf-8"))
+    assert isinstance(title, str), {"title": title}
 
     # article version
-    version = (
-        py_.chain(full_text)
+    version_find = (
+        py_.chain(full_text_dict)
         .at(["article", "front", "article-meta", "article-version"])
-        .value()[0]
+        .value()
     )
-    assert isinstance(version, str)
+    assert len(version_find) > 0
+    version = version_find[0]
+    assert isinstance(version, str), {"version": version}
 
     # category
-    category = (
-        py_.chain(full_text)
+    category_find = (
+        py_.chain(full_text_dict)
         .at(
             [
                 "article",
@@ -69,9 +84,14 @@ def parse_full_text(full_text: Dict[str, Any]) -> Dict[str, Any]:
                 "subject",
             ]
         )
-        .value()[0]
+        .value()
     )
-    assert isinstance(category, str)
+    # NOTE: category could be None in rare cases
+    # assert len(category_find) > 0
+    category = category_find[0]
+    # assert isinstance(category, str), {"category": category}
+
+    # year-month
 
     res = {
         "title": title,
@@ -81,7 +101,7 @@ def parse_full_text(full_text: Dict[str, Any]) -> Dict[str, Any]:
     return res
 
 
-@failsafe
+@failsafe()
 def main_extract(input_zip: Path) -> Dict[str, Any]:
     # read zip
     zip_path = str(input_zip.relative_to(paths["raw_data_dir"]))
@@ -99,8 +119,16 @@ def main_extract(input_zip: Path) -> Dict[str, Any]:
         bs_content = bs(zip_data, "xml")
 
     # fulltext
-    full_text = xmltodict.parse(str(bs_content))
-    parse_res = parse_full_text(full_text)
+    verbose = False
+    if (
+        str(input_zip)
+        == "/data/ik18445/projects/biorxiv-medrxiv-tdm/data/local-source-data/medrxiv/Current_Content/March_2023/dfeb991d-6c2f-1014-803d-aed9e05aecf4.meca"
+    ):
+        verbose = True
+    full_text_dict = xmltodict.parse(str(bs_content))
+    parse_res = parse_full_text(
+        full_text_dict=full_text_dict, full_text_bs=bs_content, verbose=verbose
+    )
 
     res = {
         "zip_path": zip_path,
@@ -135,7 +163,7 @@ def main():
 
     error_res = pd.DataFrame(
         [
-            {"error": _[1], "context": _[2]}
+            {"error": str(_[1]), "context": _[2]}
             for _ in processing_res
             if isinstance(_[1], Exception)
         ]

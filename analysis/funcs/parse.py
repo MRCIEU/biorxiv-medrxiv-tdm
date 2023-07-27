@@ -96,26 +96,6 @@ def parse_full_text(
     version = version_find[0]
     assert isinstance(version, str), {"version": version}
 
-    # category
-    category_find = (
-        py_.chain(full_text_dict)
-        .at(
-            [
-                "article",
-                "front",
-                "article-meta",
-                "article-categories",
-                "subj-group",
-                "subject",
-            ]
-        )
-        .value()
-    )
-    # NOTE: category could be None in rare cases
-    # assert len(category_find) > 0
-    category = category_find[0]
-    # assert isinstance(category, str), {"category": category}
-
     # year_month
     accepted_date_find = (
         py_.chain(full_text_dict)
@@ -138,7 +118,39 @@ def parse_full_text(
     publisher_id = publisher_id_find["#text"]
     assert isinstance(publisher_id, str), {"publisher_id": publisher_id}
 
-    # publish info
+    # category
+    category_find = (
+        py_.chain(full_text_dict)
+        .at(
+            [
+                "article",
+                "front",
+                "article-meta",
+                "article-categories",
+                "subj-group",
+                "subject",
+            ]
+        )
+        .value()
+    )
+    category = category_find[0]
+    if category is None:
+        category_find = (
+            py_.chain(full_text_dict)
+            .at(
+                [
+                    "article",
+                    "front",
+                    "article-meta",
+                    "article-categories",
+                    "subj-group",
+                ]
+            )
+            .thru(lambda e: e[0])
+            .filter(lambda col: col["@subj-group-type"] == "hwp-journal-coll")
+            .value()
+        )
+        category = category_find[0]["subject"]
 
     res = {
         "doi": doi,

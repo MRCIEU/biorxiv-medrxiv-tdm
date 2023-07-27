@@ -81,7 +81,9 @@ def parse_full_text(
     if not isinstance(title, str):
         title_raw = full_text_bs.find_all("article-title")[0]
         tree = etree.fromstring(str(title_raw))
-        title = str(etree.tostring(tree, method="text", encoding="utf-8"))
+        title = str(
+            etree.tostring(tree, method="text", encoding="utf-8"), "utf-8"
+        )
     assert isinstance(title, str), {"title": title}
 
     # article version

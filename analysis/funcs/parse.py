@@ -1,5 +1,5 @@
 from pathlib import Path
-from typing import Any, Dict
+from typing import Any, Dict, Optional
 from zipfile import ZipFile
 
 import xmltodict
@@ -44,7 +44,8 @@ def main_extract(input_zip: Path) -> Dict[str, Any]:
         "version": parse_res["version"],
         "category": parse_res["category"],
         "year_month": parse_res["year_month"],
-        "publisher_id": parse_res["publisher_id"],
+        "preprint_source": parse_res["preprint_source"],
+        "publish_destination": parse_res["publish_destination"],
     }
     return res
 
@@ -59,6 +60,7 @@ def parse_full_text(
         .filter(lambda col: col["@pub-id-type"] == "doi")
         .value()[0]
     )
+    assert isinstance(doi_find, dict), {"doi_find": doi_find}
     doi = doi_find["#text"]
     assert isinstance(doi, str), {"doi": doi}
 
@@ -97,28 +99,82 @@ def parse_full_text(
     assert isinstance(version, str), {"version": version}
 
     # year_month
-    accepted_date_find = (
-        py_.chain(full_text_dict)
-        .at(["article", "front", "article-meta", "history", "date"])
-        .flatten()
-        .filter(lambda col: col["@date-type"] == "accepted")
-        .value()[0]
-    )
-    year_month = {
-        "year": int(accepted_date_find["year"]),
-        "month": int(accepted_date_find["month"]),
-    }
+    year_month = find_year_month(full_text_dict)
 
     # publisher_id, medrxiv or biorxiv
+    publish_destination = None
     publisher_id_find = (
         py_.chain(full_text_dict)
         .at(["article", "front", "journal-meta", "journal-id"])
         .value()[0]
     )
-    publisher_id = publisher_id_find["#text"]
-    assert isinstance(publisher_id, str), {"publisher_id": publisher_id}
+    if not isinstance(publisher_id_find, dict):
+        preprint_source = (
+            py_.chain(publisher_id_find)
+            .filter(lambda e: e["@journal-id-type"] == "publisher-id")
+            .thru(lambda col: col[0]["#text"])
+            .value()
+        )
+        publish_destination = (
+            py_.chain(publisher_id_find)
+            .filter(lambda e: e["@journal-id-type"] == "destination")
+            .thru(lambda col: col[0]["#text"])
+            .value()
+        )
+    else:
+        preprint_source = publisher_id_find["#text"]
+    assert isinstance(preprint_source, str), {
+        "preprint_source": preprint_source
+    }
 
     # category
+    category = find_category(full_text_dict)
+
+    res = {
+        "doi": doi,
+        "title": title,
+        "version": version,
+        "category": category,
+        "year_month": year_month,
+        "preprint_source": preprint_source,
+        "publish_destination": publish_destination,
+        # NOTE: might revisit this later, after a formal round of extract
+        # "publish_info": publish_info,
+    }
+    return res
+
+
+def find_year_month(
+    full_text_dict: Dict[str, Any]
+) -> Optional[Dict[str, int]]:
+    pub_date_find = (
+        py_.chain(full_text_dict)
+        .at(["article", "front", "article-meta", "history", "date"])
+        .flatten()
+        .filter(lambda col: col["@date-type"] == "accepted")
+        .thru(lambda e: e[0] if len(e) > 0 else None)
+        .value()
+    )
+    if pub_date_find is None:
+        pub_date_find = (
+            py_.chain(full_text_dict)
+            .at(["article", "front", "article-meta", "history", "date"])
+            .flatten()
+            .filter(lambda col: col["@date-type"] == "rev-recd")
+            .thru(lambda e: e[0] if len(e) > 0 else None)
+            .value()
+        )
+        if pub_date_find is None:
+            return None
+    assert isinstance(pub_date_find, dict), {"pub_date_find": pub_date_find}
+    year_month = {
+        "year": int(pub_date_find["year"]),
+        "month": int(pub_date_find["month"]),
+    }
+    return year_month
+
+
+def find_category(full_text_dict: Dict[str, Any]) -> Optional[str]:
     category_find = (
         py_.chain(full_text_dict)
         .at(
@@ -131,10 +187,11 @@ def parse_full_text(
                 "subject",
             ]
         )
-        .value()
+        .value()[0]
     )
-    category = category_find[0]
-    if category is None:
+    if category_find is not None:
+        return category_find
+    else:
         category_find = (
             py_.chain(full_text_dict)
             .at(
@@ -150,16 +207,26 @@ def parse_full_text(
             .filter(lambda col: col["@subj-group-type"] == "hwp-journal-coll")
             .value()
         )
-        category = category_find[0]["subject"]
-
-    res = {
-        "doi": doi,
-        "title": title,
-        "version": version,
-        "category": category,
-        "year_month": year_month,
-        "publisher_id": publisher_id,
-        # NOTE: might revisit this later, after a formal round of extract
-        # "publish_info": publish_info,
-    }
-    return res
+        if len(category_find) > 0 and category_find[0] is not None:
+            return category_find[0]["subject"]
+        else:
+            category_find = (
+                py_.chain(full_text_dict)
+                .at(
+                    [
+                        "article",
+                        "front",
+                        "article-meta",
+                        "article-categories",
+                        "subj-group",
+                    ]
+                )
+                .thru(lambda e: e[0])
+                .filter(lambda col: col["@subj-group-type"] == "heading")
+                .value()
+            )
+            # Somehow biorxiv put two "heading"-s
+            if len(category_find) == 2:
+                return category_find[1]["subject"]
+            else:
+                return None

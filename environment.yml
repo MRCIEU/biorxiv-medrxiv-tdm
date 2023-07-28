@@ -25,6 +25,7 @@ dependencies:
   - loguru
   - icecream
   - pydash
+  - altair
   - pip:
     - awscli==1.27.160
     - s3cmd==2.3.0

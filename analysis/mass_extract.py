@@ -14,6 +14,7 @@ from funcs import parse  # isort:skip
 
 NUM_SAMPLES = 10
 NUM_WORKERS = 8
+OUTPUT_DIR = paths["results"] / "metadata_extract"
 
 
 @ray.remote(num_cpus=1)
@@ -103,6 +104,8 @@ def main():
     args.num_samples = NUM_SAMPLES
     print(args)
 
+    OUTPUT_DIR.mkdir(exist_ok=True)
+
     # collect lv3 dirs under biorxiv and medrxiv lv1 and Current_Content Back_Content lv2
     input_dirs_nested = []
     for lv1_dir in ["biorxiv", "medrxiv"]:
@@ -114,14 +117,14 @@ def main():
     logger.info(f"All input_dirs {len(input_dirs)}")
 
     # set up output info
-    meta_info = create_file_info(input_dirs, output_dir=paths["results"])
+    meta_info = create_file_info(input_dirs, output_dir=OUTPUT_DIR)
     print(meta_info)
-    meta_info.to_csv(paths["results"] / "meta_info.csv", index=False)
+    meta_info.to_csv(OUTPUT_DIR / "meta_info.csv", index=False)
 
     sample_meta_info = (
         meta_info[: args.num_samples].to_dict(orient="records")
         if args.trial
-        else meta_info
+        else meta_info.to_dict(orient="records")
     )
     logger.info(f"sample_meta_info {len(sample_meta_info)}")
     chunks = np.array_split(sample_meta_info, NUM_WORKERS)

@@ -7,7 +7,11 @@ from funcs.paths import paths  # isort:skip
 from funcs import parse  # isort:skip
 
 INPUT_DIR = (
-    paths["raw_data_dir"] / "medrxiv" / "Current_Content" / "March_2023"
+    # paths["raw_data_dir"] / "medrxiv" / "Current_Content" / "March_2023"
+    paths["raw_data_dir"]
+    / "biorxiv"
+    / "Current_Content"
+    / "March_2021"
 )
 assert INPUT_DIR.exists()
 OUTPUT_DIR = paths["tmp_output"]

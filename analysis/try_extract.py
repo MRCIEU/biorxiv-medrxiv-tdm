@@ -44,7 +44,6 @@ def main():
             .value()
         )
 
-
     sample_file_list = all_file_list[:NUM_SAMPLE]
 
     processing_res = [

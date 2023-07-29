@@ -73,8 +73,25 @@ def extract(
     all_file_list = [
         _ for _ in input_dir.iterdir() if str(_).endswith(".meca")
     ]
-    logger.info(f"{prefix}: Num files in {input_dir} {len(all_file_list)}")
+    # exceptional cases when there is a nested lv4 structure
+    if len(all_file_list) == 0:
+        logger.info(f"{prefix}: No files in {input_dir}")
+        lv4_dirs = [_ for _ in input_dir.iterdir() if _.is_dir()]
+        logger.info(f"{prefix}: Num lv4 dirs in {input_dir} {len(lv4_dirs)}")
+        all_file_list = (
+            py_.chain(
+                [
+                    __
+                    for _ in lv4_dirs
+                    for __ in _.iterdir()
+                    if str(__).endswith(".meca")
+                ]
+            )
+            .flatten()
+            .value()
+        )
 
+    logger.info(f"{prefix}: Num files in {input_dir} {len(all_file_list)}")
     processing_res = [
         processing_wrapper(
             idx=idx,

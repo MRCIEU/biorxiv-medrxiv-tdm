@@ -1,5 +1,6 @@
 import pandas as pd
 from loguru import logger
+from pydash import py_
 
 from yiutils.processing import processing_wrapper  # isort:skip
 
@@ -11,7 +12,7 @@ INPUT_DIR = (
     paths["raw_data_dir"]
     / "biorxiv"
     / "Current_Content"
-    / "March_2021"
+    / "April_2019"
 )
 assert INPUT_DIR.exists()
 OUTPUT_DIR = paths["tmp_output"]
@@ -26,6 +27,24 @@ def main():
         _ for _ in INPUT_DIR.iterdir() if str(_).endswith(".meca")
     ]
     logger.info(f"Num files in {INPUT_DIR} {len(all_file_list)}")
+    if len(all_file_list) == 0:
+        logger.info(f"No files in {INPUT_DIR}")
+        lv4_dirs = [_ for _ in INPUT_DIR.iterdir() if _.is_dir()]
+        logger.info(f"Num lv4 dirs in {INPUT_DIR} {len(lv4_dirs)}")
+        all_file_list = (
+            py_.chain(
+                [
+                    __
+                    for _ in lv4_dirs
+                    for __ in _.iterdir()
+                    if str(__).endswith(".meca")
+                ]
+            )
+            .flatten()
+            .value()
+        )
+
+
     sample_file_list = all_file_list[:NUM_SAMPLE]
 
     processing_res = [
